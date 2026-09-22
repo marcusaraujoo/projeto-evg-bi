@@ -1,0 +1,1681 @@
+{
+  "compatibilityLevel": 1606,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"OBT_EVG\",\"dim_curso\",\"dim_turma\",\"dim_pessoa\",\"dim_poder\",\"dim_esfera\",\"dim_conteudista\",\"f_amostra_evg\",\"_Medidas\"]"
+      }
+    ],
+    "culture": "pt-BR",
+    "cultures": [
+      {
+        "name": "pt-BR",
+        "linguisticMetadata": {
+          "content": {
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "OBT_EVG",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegação"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Fonte = Csv.Document(File.Contents(\"C:\\Users\\Marcus\\Desktop\\ProjetoModelagem\\projeto-evg-bi\\data\\amostra_evg.csv\"),[Delimiter=\",\", Columns=25, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+          "    #\"Cabeçalhos Promovidos\" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),",
+          "    #\"Tipo Alterado\" = Table.TransformColumnTypes(#\"Cabeçalhos Promovidos\",{{\"cod_matricula\", type text}, {\"dt_matricula\", type datetime}, {\"nacionalidade\", type text}, {\"cod_turma\", Int64.Type}, {\"nome_turma\", type text}, {\"modalidade_turma\", type text}, {\"cod_curso\", Int64.Type}, {\"nome_curso\", type text}, {\"carga_horaria\", Int64.Type}, {\"dt_fim\", type datetime}, {\"sit_turma\", type text}, {\"instituicao\", type text}, {\"municipio_pessoa\", type text}, {\"uf_pessoa\", type text}, {\"conteudista\", type text}, {\"tematica\", type text}, {\"codigo_pessoa\", type text}, {\"sexo\", type text}, {\"idade\", Int64.Type}, {\"sit_matricula\", type text}, {\"poder\", type text}, {\"esfera\", type text}, {\"email_pessoa\", type text}, {\"telefone_pessoa\", Int64.Type}, {\"email_conteudista\", type text}})",
+          "in",
+          "    #\"Tipo Alterado\""
+        ],
+        "kind": "m",
+        "lineageTag": "6a8fed9a-52b6-4e92-afe9-c5a5c73a0bb5"
+      }
+    ],
+    "relationships": [
+      {
+        "name": "4422e261-3d4b-4659-8087-af6da2783764",
+        "fromColumn": "dt_fim",
+        "fromTable": "f_amostra_evg",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_627d2850-0568-4ddf-8ec8-218c29bd22bf"
+      },
+      {
+        "name": "AutoDetected_dfb41522-e75c-42b2-90a0-3a22bb44cec7",
+        "fromColumn": "cod_turma",
+        "fromTable": "f_amostra_evg",
+        "toColumn": "cod_turma",
+        "toTable": "dim_turma"
+      },
+      {
+        "name": "AutoDetected_9dd14d35-aca3-47bc-81e6-d1832c9ee3e6",
+        "fromColumn": "id_poder",
+        "fromTable": "f_amostra_evg",
+        "toColumn": "id_poder",
+        "toTable": "dim_poder"
+      },
+      {
+        "name": "AutoDetected_80f06d8b-962a-4923-8285-c1e0ca5a791c",
+        "fromColumn": "id_esfera",
+        "fromTable": "f_amostra_evg",
+        "toColumn": "id_esfera",
+        "toTable": "dim_esfera"
+      },
+      {
+        "name": "b22353ef-60d4-4215-7df3-eb12d5ac80c2",
+        "fromColumn": "cod_curso",
+        "fromTable": "f_amostra_evg",
+        "toColumn": "cod_curso",
+        "toTable": "dim_curso"
+      },
+      {
+        "name": "9ba9233a-cf78-c689-fcb7-3b49e087c0cf",
+        "fromColumn": "codigo_pessoa",
+        "fromTable": "f_amostra_evg",
+        "toColumn": "codigo_pessoa",
+        "toTable": "dim_pessoa"
+      },
+      {
+        "name": "c57b0ae7-a831-a4f0-aec6-6cff6c664e26",
+        "fromColumn": "id_conteudista",
+        "fromTable": "f_amostra_evg",
+        "toColumn": "id_conteudista",
+        "toTable": "dim_conteudista"
+      },
+      {
+        "name": "8fe39210-30fc-4827-9172-b2c9dcd45056",
+        "fromColumn": "Date",
+        "fromTable": "dim_calendario",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_fd0b632a-de5d-4032-9615-4da87dcc7e69"
+      },
+      {
+        "name": "05035d4d-f811-c52f-a464-8184a25b2a25",
+        "fromColumn": "dt_matricula",
+        "fromTable": "f_amostra_evg",
+        "toColumn": "Date",
+        "toTable": "dim_calendario"
+      }
+    ],
+    "sourceQueryCulture": "pt-BR",
+    "tables": [
+      {
+        "name": "dim_curso",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegação"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "cod_curso",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "afa38c76-481f-4bfd-9072-6f2d8649c098",
+            "sourceColumn": "cod_curso",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "nome_curso",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "06f54dc0-777a-42e1-9bf6-f1ebb5472ba2",
+            "sourceColumn": "nome_curso",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "carga_horaria",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "0b2fa127-d642-4841-aab6-ba841f88b89a",
+            "sourceColumn": "carga_horaria",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "instituicao",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "fd785bcb-1270-41f9-a8bc-8991ff6a243f",
+            "sourceColumn": "instituicao",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "tematica",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "59c2d3fb-29f5-43e3-a4f3-2eef328bf076",
+            "sourceColumn": "tematica",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "f45ed72f-74f1-458a-b3d3-68344ed6c2a6",
+        "partitions": [
+          {
+            "name": "dim_curso",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Fonte = OBT_EVG,",
+                "    #\"Outras Colunas Removidas\" = Table.SelectColumns(Fonte,{\"cod_matricula\", \"cod_curso\", \"nome_curso\", \"carga_horaria\", \"instituicao\", \"tematica\"}),",
+                "    #\"Colunas Removidas\" = Table.RemoveColumns(#\"Outras Colunas Removidas\",{\"cod_matricula\"}),",
+                "    #\"Duplicatas Removidas\" = Table.Distinct(#\"Colunas Removidas\"),",
+                "    #\"Duplicatas Removidas1\" = Table.Distinct(#\"Duplicatas Removidas\", {\"cod_curso\"})",
+                "in",
+                "    #\"Duplicatas Removidas1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_turma",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegação"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "cod_turma",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e52126c5-bc6b-4f28-9805-00318686d718",
+            "sourceColumn": "cod_turma",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "nome_turma",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6aa77ceb-f59d-49f3-bcfa-11ba5a7c1625",
+            "sourceColumn": "nome_turma",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "modalidade_turma",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "926eea70-947c-445f-ae2b-7a4c92f9fd84",
+            "sourceColumn": "modalidade_turma",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sit_turma",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "019fee71-05a0-4937-a72d-3f55d3450e88",
+            "sourceColumn": "sit_turma",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "34421b42-c313-47e2-93bc-5376483202c3",
+        "partitions": [
+          {
+            "name": "dim_turma",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Fonte = OBT_EVG,",
+                "    #\"Outras Colunas Removidas\" = Table.SelectColumns(Fonte,{\"cod_turma\", \"nome_turma\", \"modalidade_turma\", \"sit_turma\"}),",
+                "    #\"Duplicatas Removidas\" = Table.Distinct(#\"Outras Colunas Removidas\")",
+                "in",
+                "    #\"Duplicatas Removidas\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_pessoa",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegação"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "municipio_pessoa",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e745fca3-0d81-4e61-9a09-05d388054975",
+            "sourceColumn": "municipio_pessoa",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "codigo_pessoa",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c7b56c85-d6a9-4e3b-940c-f763fba82331",
+            "sourceColumn": "codigo_pessoa",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "telefone_pessoa",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "21d03f60-1755-49c0-a180-8716674ecc9f",
+            "sourceColumn": "telefone_pessoa",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "uf_pessoa",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3126d388-14ba-46fb-a1bd-78ef9cffce90",
+            "sourceColumn": "uf_pessoa",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "nacionalidade",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ffdbfe9f-f905-4c3a-b626-5982bd94eb25",
+            "sourceColumn": "nacionalidade",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sexo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e9b8ec58-8d2a-4215-9550-75a9f152df5f",
+            "sourceColumn": "sexo",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "idade",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "3d55ff30-9d4f-4994-8e7b-7bb8bcddc340",
+            "sourceColumn": "idade",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "7826f127-46df-4114-805e-5e0ab9062a45",
+        "partitions": [
+          {
+            "name": "dim_pessoa",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Fonte = OBT_EVG,",
+                "    #\"Outras Colunas Removidas\" = Table.SelectColumns(Fonte,{\"municipio_pessoa\", \"codigo_pessoa\", \"telefone_pessoa\", \"uf_pessoa\", \"nacionalidade\", \"sexo\", \"idade\"}),",
+                "    #\"Duplicatas Removidas\" = Table.Distinct(#\"Outras Colunas Removidas\"),",
+                "    #\"Duplicatas Removidas1\" = Table.Distinct(#\"Duplicatas Removidas\"),",
+                "    #\"Duplicatas Removidas2\" = Table.Distinct(#\"Duplicatas Removidas1\", {\"codigo_pessoa\"})",
+                "in",
+                "    #\"Duplicatas Removidas2\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_poder",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegação"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "id_poder",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d2c86f47-8997-415e-8c85-3937e0f59eaa",
+            "sourceColumn": "id_poder",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "poder",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "15dc2ddb-4df6-4f71-a979-e87a26b969a3",
+            "sourceColumn": "poder",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "221a7dee-6ade-4492-9038-c4b81e1f9d5d",
+        "partitions": [
+          {
+            "name": "dim_poder",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Fonte = OBT_EVG,",
+                "    #\"Outras Colunas Removidas\" = Table.SelectColumns(Fonte,{\"poder\"}),",
+                "    #\"Duplicatas Removidas\" = Table.Distinct(#\"Outras Colunas Removidas\"),",
+                "    #\"Índice Adicionado\" = Table.AddIndexColumn(#\"Duplicatas Removidas\", \"Índice\", 1, 1, Int64.Type),",
+                "    #\"Colunas Renomeadas\" = Table.RenameColumns(#\"Índice Adicionado\",{{\"Índice\", \"id_poder\"}}),",
+                "    #\"Colunas Reordenadas\" = Table.ReorderColumns(#\"Colunas Renomeadas\",{\"id_poder\", \"poder\"})",
+                "in",
+                "    #\"Colunas Reordenadas\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_esfera",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegação"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "id_esfera",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "6313e41d-9f53-4744-9bc0-6103d1c4e00a",
+            "sourceColumn": "id_esfera",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "esfera",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "fceeb37e-bfe1-4e5f-81f9-f86b37db40a5",
+            "sourceColumn": "esfera",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "530217df-e7a5-4dad-9e36-213f94b1383f",
+        "partitions": [
+          {
+            "name": "dim_esfera",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Fonte = OBT_EVG,",
+                "    #\"Outras Colunas Removidas\" = Table.SelectColumns(Fonte,{\"esfera\"}),",
+                "    #\"Duplicatas Removidas\" = Table.Distinct(#\"Outras Colunas Removidas\"),",
+                "    #\"Índice Adicionado\" = Table.AddIndexColumn(#\"Duplicatas Removidas\", \"Índice\", 1, 1, Int64.Type),",
+                "    #\"Colunas Reordenadas\" = Table.ReorderColumns(#\"Índice Adicionado\",{\"Índice\", \"esfera\"}),",
+                "    #\"Colunas Renomeadas\" = Table.RenameColumns(#\"Colunas Reordenadas\",{{\"Índice\", \"id_esfera\"}})",
+                "in",
+                "    #\"Colunas Renomeadas\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_conteudista",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegação"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "id_conteudista",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "af34e5d9-a167-4cd1-b648-3fbdf955e65c",
+            "sourceColumn": "id_conteudista",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "conteudista",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "47756be6-80fe-49dc-a2fb-10b96a9cd922",
+            "sourceColumn": "conteudista",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "481fcf77-e9d6-4594-bed2-50b813e4c48d",
+        "partitions": [
+          {
+            "name": "dim_conteudista",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Fonte = OBT_EVG,",
+                "    #\"Outras Colunas Removidas\" = Table.SelectColumns(Fonte,{\"conteudista\"}),",
+                "    #\"Duplicatas Removidas\" = Table.Distinct(#\"Outras Colunas Removidas\"),",
+                "    #\"Índice Adicionado\" = Table.AddIndexColumn(#\"Duplicatas Removidas\", \"Índice\", 1, 1, Int64.Type),",
+                "    #\"Colunas Reordenadas\" = Table.ReorderColumns(#\"Índice Adicionado\",{\"Índice\", \"conteudista\"}),",
+                "    #\"Colunas Renomeadas\" = Table.RenameColumns(#\"Colunas Reordenadas\",{{\"Índice\", \"id_conteudista\"}})",
+                "in",
+                "    #\"Colunas Renomeadas\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "f_amostra_evg",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegação"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "cod_matricula",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ffb6136f-bcc6-43ef-827c-c1f4f1062b1f",
+            "sourceColumn": "cod_matricula",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "cod_curso",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "02cf9b5c-7d39-49da-a9fd-d07dcb50e57c",
+            "sourceColumn": "cod_curso",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "cod_turma",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "3cad587e-8c75-4fc9-9cc7-e6bf527090c1",
+            "sourceColumn": "cod_turma",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "dt_matricula",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "a2c4146b-e52a-435c-883e-c6db9ea3ccb3",
+            "sourceColumn": "dt_matricula",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "codigo_pessoa",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "cbc1a744-c3f8-4c48-a7e6-24e29adbd2e6",
+            "sourceColumn": "codigo_pessoa",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sit_matricula",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "91fd38d6-681b-4d7e-8d9f-0494436e3428",
+            "sourceColumn": "sit_matricula",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "dt_fim",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "c266c383-c7b8-4268-bc78-3b0e25e77524",
+            "sourceColumn": "dt_fim",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Hierarquia de datas",
+                  "table": "LocalDateTable_627d2850-0568-4ddf-8ec8-218c29bd22bf"
+                },
+                "isDefault": true,
+                "relationship": "4422e261-3d4b-4659-8087-af6da2783764"
+              }
+            ]
+          },
+          {
+            "name": "id_poder",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "74fcaad1-2de0-4824-b52e-18e51fb40423",
+            "sourceColumn": "id_poder",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "id_esfera",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "81832049-72fc-46e4-aead-c9cef31b5843",
+            "sourceColumn": "id_esfera",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "id_conteudista",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "9e3a98c9-60d6-4c1c-bfb2-66c2260b525e",
+            "sourceColumn": "id_conteudista",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "b83cc00c-df9a-4e04-bb91-351e81b399e8",
+        "partitions": [
+          {
+            "name": "f_amostra_evg",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Fonte = OBT_EVG,",
+                "    #\"Outras Colunas Removidas\" = Table.SelectColumns(Fonte,{\"cod_matricula\", \"cod_curso\", \"cod_turma\", \"dt_matricula\", \"codigo_pessoa\", \"poder\", \"esfera\", \"conteudista\", \"sit_matricula\", \"dt_fim\"}),",
+                "    #\"Consultas Mescladas\" = Table.NestedJoin(#\"Outras Colunas Removidas\", {\"poder\"}, dim_poder, {\"poder\"}, \"dim_poder\", JoinKind.LeftOuter),",
+                "    #\"dim_poder Expandido\" = Table.ExpandTableColumn(#\"Consultas Mescladas\", \"dim_poder\", {\"id_poder\"}, {\"id_poder\"}),",
+                "    #\"Consultas Mescladas1\" = Table.NestedJoin(#\"dim_poder Expandido\", {\"esfera\"}, dim_esfera, {\"esfera\"}, \"dim_esfera\", JoinKind.LeftOuter),",
+                "    #\"dim_esfera Expandido\" = Table.ExpandTableColumn(#\"Consultas Mescladas1\", \"dim_esfera\", {\"id_esfera\"}, {\"id_esfera\"}),",
+                "    #\"Consultas Mescladas2\" = Table.NestedJoin(#\"dim_esfera Expandido\", {\"conteudista\"}, dim_conteudista, {\"conteudista\"}, \"dim_conteudista\", JoinKind.LeftOuter),",
+                "    #\"dim_conteudista Expandido\" = Table.ExpandTableColumn(#\"Consultas Mescladas2\", \"dim_conteudista\", {\"id_conteudista\"}, {\"id_conteudista\"}),",
+                "    #\"Colunas Removidas\" = Table.RemoveColumns(#\"dim_conteudista Expandido\",{\"poder\", \"esfera\", \"conteudista\"}),",
+                "    #\"Tipo Alterado\" = Table.TransformColumnTypes(#\"Colunas Removidas\",{{\"dt_matricula\", type date}, {\"dt_fim\", type date}})",
+                "in",
+                "    #\"Tipo Alterado\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DateTableTemplate_d1617a61-44d6-442c-966d-3344995714b3",
+        "annotations": [
+          {
+            "name": "__PBI_TemplateDateTable",
+            "value": "true"
+          },
+          {
+            "name": "DefaultItem",
+            "value": "DateHierarchy"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "632b21c6-82c9-4e46-99cc-0fd01eac41de",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Ano",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "99faba7c-40e4-4824-98b4-55d3b9663a9b",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "8f3e98b8-cbef-4d2e-bae6-d9f7b5070eb0",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mês",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "0ada9455-9f91-4090-932b-74f02f15934a",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "a0e5606a-e999-42f6-a0c7-1d459e221373",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "016e63c4-5919-4864-a747-3c688eb2dde2",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Dia",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "89382604-c7bb-4dda-9ea2-9734c13973dc",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Hierarquia de datas",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Ano",
+                "column": "Ano",
+                "lineageTag": "38a33d3b-a112-4269-ba9b-226dcd5420cc",
+                "ordinal": 0
+              },
+              {
+                "name": "Trimestre",
+                "column": "Trimestre",
+                "lineageTag": "e9499c41-d7e6-49eb-aa6d-ddf816489cd3",
+                "ordinal": 1
+              },
+              {
+                "name": "Mês",
+                "column": "Mês",
+                "lineageTag": "1bd37485-f7ff-4a56-aeb1-a2154b7ca330",
+                "ordinal": 2
+              },
+              {
+                "name": "Dia",
+                "column": "Dia",
+                "lineageTag": "16c1059a-f8fa-495b-bbf4-8dcc7e531642",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "4b692464-1b48-47e5-b703-6a355581b509"
+          }
+        ],
+        "isHidden": true,
+        "isPrivate": true,
+        "lineageTag": "c5b288cb-b1f8-4155-a44a-0a246d2f5115",
+        "partitions": [
+          {
+            "name": "DateTableTemplate_d1617a61-44d6-442c-966d-3344995714b3",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_627d2850-0568-4ddf-8ec8-218c29bd22bf",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "99d98ff9-a13b-48ab-a33b-308d749da4a6",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Ano",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "71841fae-e2cf-47da-840a-1a1694b4f280",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "c2a77407-645e-47a9-b264-948fb38e978b",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mês",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "7464057c-e7c7-432c-a337-1ec745561be4",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "07b4e306-14f5-4cbf-afa8-4daf068010c5",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "5fbb85af-fee9-49ed-a8d2-4c759014e85f",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Dia",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "6acaedc0-d024-41d1-84c8-6163f07a1e7c",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Hierarquia de datas",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Ano",
+                "column": "Ano",
+                "lineageTag": "8212ad62-3d09-4340-a18b-c24cffe8c904",
+                "ordinal": 0
+              },
+              {
+                "name": "Trimestre",
+                "column": "Trimestre",
+                "lineageTag": "b1abe30c-08c9-4100-9b90-187ff0ce455b",
+                "ordinal": 1
+              },
+              {
+                "name": "Mês",
+                "column": "Mês",
+                "lineageTag": "8341a83a-00b8-4878-8158-e0bb660f4d1c",
+                "ordinal": 2
+              },
+              {
+                "name": "Dia",
+                "column": "Dia",
+                "lineageTag": "1979d703-db06-4d6c-a21c-517f4d92d35d",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "b8c36bef-7744-4f3e-98cb-eb30a326fc63"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "6c9aeff8-ed3c-433b-b865-3d9434c10968",
+        "partitions": [
+          {
+            "name": "LocalDateTable_627d2850-0568-4ddf-8ec8-218c29bd22bf",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('f_amostra_evg'[dt_fim])), 1, 1), Date(Year(MAX('f_amostra_evg'[dt_fim])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "dim_calendario",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "9696a3726b26448fb64ac9b4b9613254"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "72ac53c2-1659-4b88-9d12-46117e7f0539",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Hierarquia de datas",
+                  "table": "LocalDateTable_fd0b632a-de5d-4032-9615-4da87dcc7e69"
+                },
+                "isDefault": true,
+                "relationship": "8fe39210-30fc-4827-9172-b2c9dcd45056"
+              }
+            ]
+          },
+          {
+            "name": "Ano",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "ae45af51-de23-469b-9c43-ad5ed1d564bd",
+            "sourceColumn": "[Ano]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Mês Num",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "39563960-3357-4c8c-95b5-0276e51ef8e7",
+            "sourceColumn": "[Mês Num]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Nome Mês",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "6308ba39-1c1f-46c6-9690-41dcdb0fadc4",
+            "sourceColumn": "[Nome Mês]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Ano-Mês",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "d881e7c3-e5e6-4a56-91d4-ec59d16b3286",
+            "sourceColumn": "[Ano-Mês]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "03888ddf-2b6e-434e-84bb-d584818905f3",
+            "sourceColumn": "[Trimestre]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "1fae6417-850c-45bc-83e2-b75c13eac0fb",
+        "partitions": [
+          {
+            "name": "dim_calendario",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "",
+                "VAR DataMinima = MIN(f_amostra_evg[dt_matricula])",
+                "VAR DataMaxima = MAX(f_amostra_evg[dt_matricula])",
+                "RETURN",
+                "ADDCOLUMNS (",
+                "    CALENDAR ( DataMinima, DataMaxima ),",
+                "    \"Ano\", YEAR ( [Date] ),",
+                "    \"Mês Num\", MONTH ( [Date] ),",
+                "    \"Nome Mês\", FORMAT ( [Date], \"mmmm\", \"pt-BR\" ),",
+                "    \"Ano-Mês\", FORMAT ( [Date], \"yyyy-mm\" ),",
+                "    \"Trimestre\", \"T\" & FORMAT ( [Date], \"q\" )",
+                ")"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_fd0b632a-de5d-4032-9615-4da87dcc7e69",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "429a6343-5d6d-434d-a52d-09b647ba2fcd",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Ano",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "8b01ce7c-79a4-461a-91ac-b6a12531385e",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "e4ebe0b5-ee71-4a31-a812-da370c1f8c1a",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mês",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "923a6e2d-5c78-459e-b86c-1a90ac1b66e9",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "6c0af47b-fb89-4643-bff1-1d9b49d6dfb8",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "8f17c845-f0b7-43c7-8106-4286c7f4fe6b",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Dia",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "ef3607c0-648b-44f5-b866-4adadf0b8010",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Hierarquia de datas",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Ano",
+                "column": "Ano",
+                "lineageTag": "c3102692-ca33-4696-874a-b9b8f273e810",
+                "ordinal": 0
+              },
+              {
+                "name": "Trimestre",
+                "column": "Trimestre",
+                "lineageTag": "00d0a312-3f0e-45ac-8e5e-ab0224d753c3",
+                "ordinal": 1
+              },
+              {
+                "name": "Mês",
+                "column": "Mês",
+                "lineageTag": "9d6bef88-54e4-4bd2-9965-877a80877c55",
+                "ordinal": 2
+              },
+              {
+                "name": "Dia",
+                "column": "Dia",
+                "lineageTag": "b4d6c9db-d1b0-4984-8071-f8a6ca48b258",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "0512662d-a81d-4bc8-b18a-794aa8b1a0dc"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "c05534bd-5a5c-4840-94c2-605521169e6a",
+        "partitions": [
+          {
+            "name": "LocalDateTable_fd0b632a-de5d-4032-9615-4da87dcc7e69",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('dim_calendario'[Date])), 1, 1), Date(Year(MAX('dim_calendario'[Date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "_Medidas",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Coluna 1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "5152d4af-3b39-4e6d-b1a6-d476411cafff",
+            "sourceColumn": "Coluna 1",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "45011597-45ec-46db-bb47-243f1f4d93be",
+        "measures": [
+          {
+            "name": "Total Matrículas",
+            "expression": "COUNTROWS(f_amostra_evg)",
+            "formatString": "0",
+            "lineageTag": "68eeae40-e771-4e3d-bcad-befcece5afa3"
+          },
+          {
+            "name": "Matrículas Concluídas",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    COUNTROWS(f_amostra_evg),",
+              "    f_amostra_evg[sit_matricula] = \"Concluida\"",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "41d0cb49-a64a-4e18-8339-388ef665445a"
+          },
+          {
+            "name": "% Conclusão",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "DIVIDE([Matrículas Concluídas], [Total Matrículas], 0)"
+            ],
+            "lineageTag": "d8bad223-cf3a-433b-a496-6bd0848fe3ee"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "_Medidas",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#\"Coluna 1\" = _t]),",
+                "    #\"Tipo Alterado\" = Table.TransformColumnTypes(Fonte,{{\"Coluna 1\", type text}})",
+                "in",
+                "    #\"Tipo Alterado\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

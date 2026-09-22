@@ -1,0 +1,11 @@
+# Ignorar ficheiros de dados pesados e brutos
+*.csv
+*.abf
+data/
+
+# Ignorar pastas e ficheiros temporários do Power BI
+*.tmp
+*.lock
+*.pbi/cache
+.DS_Store
+Thumbs.db

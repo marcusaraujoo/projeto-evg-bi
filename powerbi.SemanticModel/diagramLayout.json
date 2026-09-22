@@ -1,0 +1,139 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 762.95140792454526,
+            "y": 631.67244262148745
+          },
+          "nodeIndex": "dim_conteudista",
+          "nodeLineageTag": "481fcf77-e9d6-4594-bed2-50b813e4c48d",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 812.70906392454538,
+            "y": 0
+          },
+          "nodeIndex": "dim_curso",
+          "nodeLineageTag": "f45ed72f-74f1-458a-b3d3-68344ed6c2a6",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 293.84738498280052,
+            "y": 0
+          },
+          "nodeIndex": "dim_esfera",
+          "nodeLineageTag": "530217df-e7a5-4dad-9e36-213f94b1383f",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 963.84198892454526,
+            "y": 317.59671375017922
+          },
+          "nodeIndex": "dim_pessoa",
+          "nodeLineageTag": "7826f127-46df-4114-805e-5e0ab9062a45",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 129.95423551426956
+          },
+          "nodeIndex": "dim_poder",
+          "nodeLineageTag": "221a7dee-6ade-4492-9038-c4b81e1f9d5d",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 62.979657222259874,
+            "y": 519.01166950035827
+          },
+          "nodeIndex": "dim_turma",
+          "nodeLineageTag": "34421b42-c313-47e2-93bc-5376483202c3",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 476.767775786113,
+            "y": 141.11898414828374
+          },
+          "nodeIndex": "f_amostra_evg",
+          "nodeLineageTag": "b83cc00c-df9a-4e04-bb91-351e81b399e8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 376.92931237996976,
+            "y": 532.90066488633124
+          },
+          "nodeIndex": "dim_calendario",
+          "nodeLineageTag": "1fae6417-850c-45bc-83e2-b75c13eac0fb",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1083.6526616222052,
+            "y": 82.7393913670951
+          },
+          "nodeIndex": "_Medidas",
+          "nodeLineageTag": "45011597-45ec-46db-bb47-243f1f4d93be",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 56.447393005377819,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}
